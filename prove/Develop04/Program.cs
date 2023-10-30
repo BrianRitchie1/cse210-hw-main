@@ -6,8 +6,8 @@ class Program
 {
     static void Main()
     {
+        string _pro_listening;
         
-
         Random random = new Random();
         Listening Pro_listening = new Listening();
 
