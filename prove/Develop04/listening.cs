@@ -2,17 +2,14 @@ using System;
 using System.Threading;
 using System.IO;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 
 
 class Listening : Program
 {
-    public void content()
-    {        
-        Listening = pro_listenting;
-        Console.WriteLine("This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
-        Random random = new Random();
-        List<string> listening_prompts = new List<string>()
+
+    public List<string> listening_prompts = new List<string>()
         {
             "Who are people that you appreciate?",
             "What are personal strengths of yours?",
@@ -21,9 +18,9 @@ class Listening : Program
             "Who are some of your personal heroes?",
         };
 
-        int index = random.Next(listening_prompts.Count);
-        Console.WriteLine(listening_prompts[index]);
-
+    public void content()
+    {        
+        Console.WriteLine("This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
         Console.WriteLine("Begin to think on the prompt");
         Thread.Sleep(1000);
         Console.WriteLine("Ready? ");
