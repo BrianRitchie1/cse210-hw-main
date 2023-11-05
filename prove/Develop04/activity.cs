@@ -8,7 +8,6 @@ public class Activity
 {
     private List<string> _nameListening;
     private List<string> _nameReflection;
-
     public Activity (List<string> nameListening, List<string>nameReflection)
     {
         _nameListening = nameListening;
@@ -22,6 +21,7 @@ public class Activity
     {
         return _nameReflection;
     }
+    
     public Random 
     {
         Random random = new Random();
