@@ -9,11 +9,12 @@ public class Activity
     private List<string> _nameListening;
     private 
 
-    public Ritchie (List<string> listening_prompts)
+    public activity (List<string> listening_prompts)
     {
         Listening l= new Listening();
         _nameListening = l.listening_prompts;
     }
+    
     public Random 
     {
         Random random = new Random();
