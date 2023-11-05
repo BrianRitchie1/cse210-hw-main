@@ -7,17 +7,25 @@ using System.Net.Mime;
 public class Activity
 {
     private List<string> _nameListening;
-    private 
-
-    public activity (List<string> listening_prompts)
+    private List<string> _nameReflection;
+    public Activity (List<string> nameListening, List<string>nameReflection)
     {
-        Listening l= new Listening();
-        _nameListening = l.listening_prompts;
+        _nameListening = nameListening;
+        _nameReflection = nameReflection;
+    }
+    public List<string> listenString()
+    {
+        return _nameListening;
+    }
+    public List<string> reflectionString()
+    {
+        return _nameReflection;
     }
     
     public Random 
     {
         Random random = new Random();
-        int index = random.Next();
+
     }
+    
 }
