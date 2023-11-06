@@ -7,11 +7,11 @@ using System.Net.Mime;
 public class Activity
 {
     private List<string> _nameListening;
-    private List<string> _nameReflection;
-    public Activity (List<string> nameListening, List<string>nameReflection)
+    private List<string> _nameReflectionBefore;
+    public Activity (List<string> listening_prompts, List<string>reflection_prompts_before)
     {
-        _nameListening = nameListening;
-        _nameReflection = nameReflection;
+        _nameListening = listening_prompts;
+        _nameReflectionBefore = reflection_prompts_before;
     }
     public List<string> listenString()
     {
@@ -19,7 +19,7 @@ public class Activity
     }
     public List<string> reflectionString()
     {
-        return _nameReflection;
+        return _nameReflectionBefore;
     }
     
     public Random 

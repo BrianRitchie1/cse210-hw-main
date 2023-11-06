@@ -10,7 +10,7 @@ class Program
         Random random = new Random();
         Listening Pro_listening = new Listening();
         Breathing breathing = new Breathing();
-        Reflecting reflecting= new Reflecting();
+        Reflection reflecting= new Reflection();
         while (true)
         {
             Console.WriteLine("Choose a fun activity");

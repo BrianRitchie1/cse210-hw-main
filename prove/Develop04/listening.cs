@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 
 
 
-class Listening : Program
+class Listening : Activity
 {
 
     public List<string> listening_prompts = new List<string>()
