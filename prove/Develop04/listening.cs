@@ -21,6 +21,7 @@ class Listing:Activity{
         Thread.Sleep(2000);
         Console.WriteLine("(Put your entry here):");
         string entry;
+        var entries = new System.Collections.Generic.List<string>();
         while (true)
         {
             entry = Console.ReadLine();
@@ -28,6 +29,12 @@ class Listing:Activity{
             {
                 break;
             }
+            entries.Add(entry);
+        }
+        Console.WriteLine("You have entered the following entries:");
+        foreach (var i in entries)
+        {
+            Console.WriteLine(i);
         }
     }
 }
