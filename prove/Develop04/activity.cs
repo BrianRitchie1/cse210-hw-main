@@ -1,31 +1,52 @@
-using System;
-using System.Threading;
-using System.IO;
-using System.Collections.Generic;
-using System.Net.Mime;
+class Activity{
 
-public class Activity
-{
-    private List<string> _nameListening;
-    private List<string> _nameReflectionBefore;
-    public Activity (List<string> listening_prompts, List<string>reflection_prompts_before)
-    {
-        _nameListening = listening_prompts;
-        _nameReflectionBefore = reflection_prompts_before;
-    }
-    public List<string> listenString()
-    {
-        return _nameListening;
-    }
-    public List<string> reflectionString()
-    {
-        return _nameReflectionBefore;
-    }
-    
-    public Random 
-    {
-        Random random = new Random();
+    public string activity;
+    public string description;
+
+    public int duration;
+
+
+    public void inro(){
+        Console.WriteLine($"Welcome to the {activity} Activity");
+        Console.WriteLine(description);
+
+        Console.WriteLine("How long, in seconds, would you like for your section?");
+        duration= int.Parse (Console.ReadLine());
+
+        Console.WriteLine("Get read...");
+        do_animation();
 
     }
-    
+
+
+
+    public void end(){
+        Console.WriteLine("Well done!");
+        do_animation();
+        Console.WriteLine($"You have completed another {duration} seconds for the {activity} Activity");
+        do_animation();
+        Console.Clear();
+    }
+
+    public void do_animation(){
+        for(int i= 0; i <3; i++){
+
+            
+            Console.Write("\\");
+            Thread.Sleep(500);
+            Console.Write("\b \b"); 
+            Console.Write("|");
+            Thread.Sleep(500);
+            Console.Write("\b \b"); 
+            Console.Write("/");
+            Thread.Sleep(500);
+            Console.Write("\b \b"); 
+            Console.Write("-");
+            Thread.Sleep(500);
+            Console.Write("\b \b"); 
+        }
+      
+    }
+
 }
+

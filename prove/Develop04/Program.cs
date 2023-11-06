@@ -1,50 +1,46 @@
 using System;
-using System.Reflection.Metadata;
-using System.Threading;
 
 class Program
 {
-    static void Main()
-    {
-        
-        Random random = new Random();
-        Listening Pro_listening = new Listening();
+    static void Main(string[] args)
+    {   
         Breathing breathing = new Breathing();
-        Reflection reflecting= new Reflection();
-        while (true)
+        Reflecting reflecting= new Reflecting();
+        Listing listing= new Listing();
+        while(true)
         {
-            Console.WriteLine("Choose a fun activity");
-            Console.WriteLine("");
-            Console.WriteLine("1: Breathing ");
-            Console.WriteLine("2: Listening ");
-            Console.WriteLine("3: Relflection ");
-            Console.WriteLine("4: Quit ");
+            Console.WriteLine("Menu Options:");
+            Console.WriteLine("    1.Start breathing activity");
+            Console.WriteLine("    2.Start reflecting activity");
+            Console.WriteLine("    3.Start listing activity");
+            Console.WriteLine("    4.Quit");
             int choice = int.Parse(Console.ReadLine());
 
-        
         switch (choice)
-        {
+            {
             case 1:
-                Console.WriteLine("breathing activity");
+                breathing.inro();
+                breathing.do_activity();
+                breathing.end();
                 break;
+            
             case 2:
-                Console.WriteLine ("What is the time would would like to ponder?");
-                int utimer = Console.Read();
-                utimer = utimer * 1000;
-                Console.WriteLine(utimer);
-                Pro_listening.content();
+                reflecting.inro();
+                reflecting.do_activity();
+                reflecting.end();
                 break;
             case 3:
-                // Add code for the Reflecting activity
-                Console.WriteLine("Reflecting activity");
+                listing.inro();
+                listing.do_activity();
+                listing.end();
                 break;
             case 4:
                 Console.WriteLine("Goodbye!");
-                return; // Exit the program
-            default:
-                Console.WriteLine("Invalid choice.");
-                break;
+                return;
+                
+            }
+
+
         }
-}
     }
 }

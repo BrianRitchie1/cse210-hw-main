@@ -1,14 +1,9 @@
-using System;
-using System.Threading;
-using System.IO;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
+class Listing:Activity{
 
-
-
-class Listening : Activity
-{
-
+    public Listing(){
+        activity = "listing";
+        description = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
+    }
     public List<string> listening_prompts = new List<string>()
         {
             "Who are people that you appreciate?",
@@ -17,19 +12,22 @@ class Listening : Activity
             "When have you felt the Holy Ghost this month?",
             "Who are some of your personal heroes?",
         };
-
-    public void content()
-    {        
-        Console.WriteLine("This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
-        Console.WriteLine("Begin to think on the prompt");
-        Thread.Sleep(5000);
-        Console.WriteLine("Ready? ");
-
-        
-        Console.Write("(Put your entry here): ");
-        string listening_entry = Console.ReadLine();
-        
-
+    public void do_activity(){
+        Random random = new Random();
+        int randomIndex = random.Next(listening_prompts.Count);
+        Console.WriteLine(listening_prompts[randomIndex]);
+        do_animation();
+        Console.WriteLine("When you finish hit enter.");
+        Thread.Sleep(2000);
+        Console.WriteLine("(Put your entry here):");
+        string entry;
+        while (true)
+        {
+            entry = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(entry))
+            {
+                break;
+            }
+        }
     }
 }
-
