@@ -5,7 +5,7 @@ class Program
     static void Main(string[] args)
     {   
         Breathing breathing = new Breathing();
-        Reflecting reflecting= new Reflecting();
+        Reflecting reflecting = new Reflecting();
         Listing listing= new Listing();
         while(true)
         {
