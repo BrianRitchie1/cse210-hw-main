@@ -18,7 +18,6 @@ class Program
             Console.WriteLine("4. Load Goals");
             Console.WriteLine("5. Record Events");
             Console.WriteLine("6. Quit");
-
             Console.Write("\nEnter your choice: ");
             string choice = Console.ReadLine();
 

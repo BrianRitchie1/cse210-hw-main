@@ -8,7 +8,8 @@ public class Checklist : Goal
     public Checklist(string nameTs, int pointsTs, string tsDescription, int tsRequiredCount)
     {
         TsName = nameTs;
-        TsPoints = pointsTs;
+        TsPoints = 0;
+        BtrPoints = pointsTs;
         this.tsShort = tsDescription;
         this.tsRequiredCount = tsRequiredCount;
     }
@@ -16,6 +17,7 @@ public class Checklist : Goal
     public override void TsRecord()
     {
         completedCount++;
+        TsPoints += BtrPoints;
         if (completedCount == tsRequiredCount)
         {
             TsIsDone = true;

@@ -4,12 +4,13 @@ public class Simple : Goal
     public Simple(string nameTs, int pointsTs)
     {
         TsName = nameTs;
-        TsPoints = pointsTs;
+        BtrPoints = pointsTs;
     }
 
     public override void TsRecord()
     {
         TsIsDone = true;
+        TsPoints += BtrPoints;
     }
 
     public override void TsDisplay()

@@ -6,14 +6,14 @@ public class Eternal : Goal
     public Eternal(string nameTs, int pointsTs, string tsDescription)
     {
         TsName = nameTs;
-        TsPoints = pointsTs;
+        BtrPoints = pointsTs;
         this.tsShort = tsDescription;
     }
 
     public override void TsRecord()
     {
         // Eternal goals are never completed, but the user gains points each time
-        TsPoints += 100; 
+        TsPoints += BtrPoints; 
     }
 
     public override void TsDisplay()
