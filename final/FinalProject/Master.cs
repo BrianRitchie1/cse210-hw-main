@@ -1,12 +1,10 @@
-// Child class for simple goals
-public class Dates : Tissue
+public class Master : Tissue
 {
-    public Dates(string titleBtr, int valuesBtr)
+    public Master (string titleBtr, int valueMaster )
     {
         BtrTitle = titleBtr;
-        BtrPoints = valuesBtr;
+        BtrPoints = valueMaster;
     }
-
     public override void TsRecord()
     {
         BtrAdditionPoints += BtrPoints;
@@ -14,7 +12,7 @@ public class Dates : Tissue
 
     public override void TsDisplay()
     {
-        Console.WriteLine($"{BtrTitle} - {BtrPoints}");
+        Console.WriteLine($"{BtrTitle} -$");
     }
 
     public override string TsToString()

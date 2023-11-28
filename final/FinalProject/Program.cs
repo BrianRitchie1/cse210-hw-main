@@ -7,99 +7,254 @@ class Program
 {
     static void Main()
     {
-        List <Tissue> Budget_Menu = new List<Tissue>();
-        int Console.WriteLine("What is your budget? ");
-        int UltimateBudget = Console.ReadLine();
+        List<Tissue> Budgets = new List<Tissue>();
+        Console.Write("What is you master budget? ");
+        int valueMaster = int.Parse(Console.ReadLine());
 
-        while (True);
+
+
+        while (true)
         {
-            Console.WriteLine("/nMenu:");
-            Console.WriteLine("1. Display Budgets ");
-            Console.WriteLine("2. Create Budget ");            Console.Writeline("8. Save Budgets ")
-            Console.WriteLine("3. Save Your Budget ");
-            Console.Writeline("4. Load Ya stuff ");
-            Console.WriteLine("5. Finantial Advice ");
-            Console.WriteLine("6. Quit ");
-            Console.Write("/nEnter your choice: ");
-            string choice = Console.Readline();
+            Console.WriteLine("\nMenu:");
+            Console.WriteLine("1. Create New Budget");
+            Console.WriteLine("2. List your budgets");
+            Console.WriteLine("3. Save your budgets ");
+            Console.WriteLine("4. Load budgets ");
+            Console.WriteLine("5. Record Stuff");
+            Console.WriteLine("6. Quit");
+            Console.Write("\nEnter your choice: ");
+            string choice = Console.ReadLine();
 
             switch (choice)
             {
                 case "1":
-                    DisplayBudgets(Budget_Menu);
+                    CreateBudget(Budgets, ref valueMaster);
                     break;
                 case "2":
-                    Create_Budget(Budget_Menu);
+                    DisplayBudget(Budgets, valueMaster);
                     break;
                 case "3":
-                    Save_budgets(Budget_Menu);
+                    SaveBudget("budget.txt", Budgets);
+                    Console.WriteLine("Budget(s) saved.");
                     break;
                 case "4":
-                    L_B = Load_Budgets(Budget_Menu);
+                    Budgets = LoadBudgets("goals.txt");
+                    Console.WriteLine("Goals loaded.");
                     break;
                 case "5":
-                    Finantial_Advice;
+                    RecordEvent(Budgets, valueMaster);
+                    break;
                 case "6":
-                    Console.WriteLine("Bye Bye");
+                    SaveBudget("goals.txt", Budgets);
+                    Console.WriteLine("Goals saved. Exiting program.");
                     return;
                 default:
-                    Console.WriteLine("Wrong ");
+                    Console.WriteLine("Invalid choice. Try again.");
                     break;
-
-                    
             }
         }
     }
-}
 
-static void Create_Budget(List<Tissue> )
-{
-    Console.WriteLine("What type of budget are you trying to make? ");
-    Console.WriteLine("1. Tithing ");
-    Console.WriteLine("2. Rent ");
-    Console.WriteLine("3. Food ");
-    Console.WriteLine("4. Dating ");
-    Console.WriteLine("5. Fun");
-    Console.Write(" - ");
-    string Budget_Flavor = Console.Readline();
-
-    switch (Budget_Flavor)
+    static void CreateBudget(List<Tissue> Budgets, ref int valueMaster)
     {
-        case "1":
-            Budget_Menu.Add(CreateTithingBudget);
-            break;
-        case "2":
-            Budget_Menu.Add(CreateRentBudget);
-            break;
-        case "3":
-            Budget_Menu.Add(CreateFoodBudget);
-            break;
-        case "4":
-            Budget_Menu.Add(CreateDatingBudget);
-            break;
-        case "5";
-            Budget_Menu.Add(CreateFunBudget);
-            break;
-        default:
-            Console.Writeline("You suck ")
-            break;
+        Console.WriteLine("\nChoose Budget Type:");
+        Console.WriteLine("1. Any simple budget ");
+        Console.WriteLine("2. Tithing Budget ");
+        Console.WriteLine("3. A budget for fun ");
+        Console.WriteLine("4. A budget for rent ");
+        Console.WriteLine("5. Time Budgeting ");
+        Console.WriteLine("6. A budget for food ");
+        Console.WriteLine("7. Check bugdets against master budget ");
+
+
+        Console.Write("Enter your choice: ");
+        string TypeBuget = Console.ReadLine();
+
+        switch (TypeBuget)
+        {
+            case "1":
+                Budgets.Add(CreateSimpleBudget());
+                break;
+            case "2":
+                Budgets.Add(CreateThithingBudget());
+                break;
+            case "3":
+                Budgets.Add(CreateFunBudget());
+                break;
+            case "4": 
+                Budgets.Add(CreateRentBudget());
+                break;
+            case "5":
+                Budgets.Add(CreateTimeBudget());
+                break;
+            case "6":
+                Budgets.Add(CreateFoodBudget());
+                break;
+            case "7":
+                Budgets.Add(CreateMasterBudget(valueMaster));
+                break;
+            default:
+                Console.WriteLine("Invalid choice. Creating a Simple Goal by default.");
+                Budgets.Add(CreateSimpleBudget());
+                break;
+        }
+    }
+
+    static Dates CreateSimpleBudget()
+    {
+        Console.Write("Enter the name of the goal: ");
+        string titleBtr = Console.ReadLine();
+        Console.Write("Enter a short description of the goal: ");
+        string description = Console.ReadLine();
+        Console.Write("Enter the initial value of the goal: ");
+        int valuesBtr = int.Parse(Console.ReadLine());
+
+
+        return new Dates(titleBtr, valuesBtr);
+    }
+    static Tithing CreateThithingBudget()
+    {
+        Console.Write("Is for thithing ");
+        string titleBtr = Console.ReadLine();
+        Console.Write("What did you make this month? ");
+        int moneyMade = int.Parse(Console.ReadLine());
+        Console.WriteLine($"You should give {moneyMade/10} to the Lord ");
+        int valuesBtr = moneyMade/10;
+
+        return new Tithing (titleBtr, valuesBtr);
+    }
+    static Fun CreateFunBudget()
+    {
+        Console.Write("This budget is for non essential activites that you enjoy doing. What's a good name for this budget? ");
+        string titleBtr = Console.ReadLine();
+        Console.Write("What is this budget for? ");
+        string description = Console.ReadLine();
+        Console.Write("What is the amount you're going to spend? ");
+        int valuesBtr = int.Parse(Console.ReadLine());
+
+        return new Fun (titleBtr, valuesBtr);
+    }
+
+    static Rent CreateRentBudget()
+    {
+        Console.Write("This budget is for rent, Duh. What's a good name for this budget? ");
+        string titleBtr = Console.ReadLine();
+        Console.Write("How much money do you have? ");
+        int totalMoney = int.Parse(Console.ReadLine());
+        Console.Write("How much will rent be? ");
+        int afterRent = int.Parse(Console.ReadLine());
+        Console.WriteLine($"You will have {totalMoney - afterRent}$ after rent ");
+        int valuesBtr = totalMoney - afterRent;
+         
+
+
+        return new Rent (totalMoney, afterRent, titleBtr, valuesBtr);
+    }
+
+    static Timea CreateTimeBudget()
+    {
+        Console.Write("This is a budget for time. What would you like to call this particular budget? ");
+        string titleBtr = Console.ReadLine();
+        Console.Write("How many hours do you want to spend on this or that? ");
+        int valuesBtr = int.Parse(Console.ReadLine());
+
+        return new Timea (titleBtr, valuesBtr);
+    }
+
+    static Food CreateFoodBudget()
+    {
+        Console.Write("This is a budget for food. What would you like to call this budget? ");
+        string titleBtr = Console.ReadLine();
+        Console.Write("How much would you like to spend on food for this week? ");
+        int valuesBtr = int.Parse(Console.ReadLine());
+
+        return new Food (titleBtr, valuesBtr);
+
+
+    }
+
+    static Master CreateMasterBudget(int valueMaster)
+    {
+        
+        string titleBtr = "Master Budget";
+        return new Master (titleBtr, valueMaster);
+        
     }
 
 
-    static Tithing CreateTithingBudget()
+    
+
+    static void RecordEvent(List<Tissue> Budgets, int valueMaster)
     {
-        Console.Writeline("How much money have you made sine your last donation? ");
-        int fakeTithingAmount = Console.ReadLine();
-        realTithingAmount = fakeTithingAmount / 10;
-        Console.WriteLine($"You should be paying {realTithingAmount}");
+        DisplayBudget(Budgets, valueMaster);
+
+        Console.Write("\nEnter the index of the goal to record an event: ");
+        int index = int.Parse(Console.ReadLine());
+
+        if (index >= 0 && index < Budgets.Count)
+        {
+            Budgets[index].TsRecord();
+            Console.WriteLine("Event recorded. Points added.");
+        }
+        else
+        {
+            Console.WriteLine("Invalid index.");
+        }
     }
 
-    static Rent CreateRentBudget();
+    static void DisplayBudget(List<Tissue> Budgets, int valueMaster)
     {
-
+        Console.WriteLine("\nBudgets:");
+        for (int i = 0; i < Budgets.Count; i++)
+        {
+            Budgets[i].TsDisplay();
+        }
+        Console.WriteLine($"\nMaster Budget: {valueMaster}");
+        Console.WriteLine($"\nRemaining Master Budget: {valueMaster - Budgets.Sum(g => g.BtrPoints)}\n");
     }
 
+    static void SaveBudget(string fileName, List<Tissue> Budgets)
+    {
+        using (StreamWriter writer = new StreamWriter(fileName))
+        {
+            foreach (var goal in Budgets)
+            {
+                writer.WriteLine(goal.TsToString());
+            }
+        }
+    }
 
+    static List<Tissue> LoadBudgets(string fileName)
+    {
+        List<Tissue> loadedGoals = new List<Tissue>();
 
+        if (File.Exists(fileName))
+        {
+            using (StreamReader reader = new StreamReader(fileName))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string[] parts = line.Split(',');
 
+                    Tissue budget = CreateBudgetInstance(parts[0]);
+                    budget.TsFromString(line);
+                    loadedGoals.Add(budget);
+                }
+            }
+        }
+
+        return loadedGoals;
+    }
+
+    static Tissue CreateBudgetInstance(string TypeBuget)
+    {
+        switch (TypeBuget)
+        {
+            case nameof(Dates):
+                return new Dates("", 0);
+            default:
+                throw new ArgumentException("Invalid goal type");
+        }
+    }
 }

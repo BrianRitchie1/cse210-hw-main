@@ -8,7 +8,7 @@ public class Eternal : Goal
         TsName = nameTs;
         BtrPoints = pointsTs;
         this.tsShort = tsDescription;
-    }
+    } 
 
     public override void TsRecord()
     {
