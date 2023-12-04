@@ -5,22 +5,22 @@ public class Fun : Tissue
         BtrTitle = titleBtr;
         BtrPoints = valuesBtr;
     }
-    public override void TsRecord()
+    public override void BtrRecord()
     {
         BtrAdditionPoints += BtrPoints;
     }
 
-    public override void TsDisplay()
+    public override void BtrDisplay()
     {
         Console.WriteLine($"{BtrTitle} - {BtrPoints}$");
     }
 
-    public override string TsToString()
+    public override string BtrToString()
     {
         return $"{GetType().Name},{BtrTitle},{BtrPoints},{BtrBool}";
     }
 
-    public override void TsFromString(string data)
+    public override void BtrFromString(string data)
     {
         string[] parts = data.Split(',');
         BtrTitle = parts[1];

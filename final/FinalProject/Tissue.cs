@@ -10,8 +10,8 @@ public abstract class Tissue
 
     public int BtrAdditionPoints {get; set; }
 
-    public abstract void TsRecord();
-    public abstract void TsDisplay();
-    public abstract string TsToString();
-    public abstract void TsFromString(string data);
+    public abstract void BtrRecord();
+    public abstract void BtrDisplay();
+    public abstract string BtrToString();
+    public abstract void BtrFromString(string data);
 }

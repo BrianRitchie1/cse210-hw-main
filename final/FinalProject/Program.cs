@@ -38,15 +38,15 @@ class Program
                     Console.WriteLine("Budget(s) saved.");
                     break;
                 case "4":
-                    Budgets = LoadBudgets("goals.txt");
-                    Console.WriteLine("Goals loaded.");
+                    Budgets = LoadBudgets("budgets.txt");
+                    Console.WriteLine("Budgets loaded.");
                     break;
                 case "5":
                     RecordEvent(Budgets, valueMaster);
                     break;
                 case "6":
-                    SaveBudget("goals.txt", Budgets);
-                    Console.WriteLine("Goals saved. Exiting program.");
+                    SaveBudget("budgets.txt", Budgets);
+                    Console.WriteLine("Budgets saved. Exiting program.");
                     return;
                 default:
                     Console.WriteLine("Invalid choice. Try again.");
@@ -94,7 +94,7 @@ class Program
                 Budgets.Add(CreateMasterBudget(valueMaster));
                 break;
             default:
-                Console.WriteLine("Invalid choice. Creating a Simple Goal by default.");
+                Console.WriteLine("Invalid choice. Creating a Simple Budget instead");
                 Budgets.Add(CreateSimpleBudget());
                 break;
         }
@@ -102,11 +102,9 @@ class Program
 
     static Dates CreateSimpleBudget()
     {
-        Console.Write("Enter the name of the goal: ");
+        Console.Write("Enter the name of the budget: ");
         string titleBtr = Console.ReadLine();
-        Console.Write("Enter a short description of the goal: ");
-        string description = Console.ReadLine();
-        Console.Write("Enter the initial value of the goal: ");
+        Console.Write("Enter the initial value of the budget: ");
         int valuesBtr = int.Parse(Console.ReadLine());
 
 
@@ -168,6 +166,9 @@ class Program
         Console.Write("How much would you like to spend on food for this week? ");
         int valuesBtr = int.Parse(Console.ReadLine());
 
+        
+        
+
         return new Food (titleBtr, valuesBtr);
 
 
@@ -188,12 +189,12 @@ class Program
     {
         DisplayBudget(Budgets, valueMaster);
 
-        Console.Write("\nEnter the index of the goal to record an event: ");
+        Console.Write("\nEnter the index of the budget to record an event: ");
         int index = int.Parse(Console.ReadLine());
 
         if (index >= 0 && index < Budgets.Count)
         {
-            Budgets[index].TsRecord();
+            Budgets[index].BtrRecord();
             Console.WriteLine("Event recorded. Points added.");
         }
         else
@@ -207,7 +208,7 @@ class Program
         Console.WriteLine("\nBudgets:");
         for (int i = 0; i < Budgets.Count; i++)
         {
-            Budgets[i].TsDisplay();
+            Budgets[i].BtrDisplay();
         }
         Console.WriteLine($"\nMaster Budget: {valueMaster}");
         Console.WriteLine($"\nRemaining Master Budget: {valueMaster - Budgets.Sum(g => g.BtrPoints)}\n");
@@ -217,16 +218,16 @@ class Program
     {
         using (StreamWriter writer = new StreamWriter(fileName))
         {
-            foreach (var goal in Budgets)
+            foreach (var i in Budgets)
             {
-                writer.WriteLine(goal.TsToString());
+                writer.WriteLine(i.BtrToString());
             }
         }
     }
 
     static List<Tissue> LoadBudgets(string fileName)
     {
-        List<Tissue> loadedGoals = new List<Tissue>();
+        List<Tissue> BudgetsLoaded = new List<Tissue>();
 
         if (File.Exists(fileName))
         {
@@ -238,13 +239,13 @@ class Program
                     string[] parts = line.Split(',');
 
                     Tissue budget = CreateBudgetInstance(parts[0]);
-                    budget.TsFromString(line);
-                    loadedGoals.Add(budget);
+                    budget.BtrFromString(line);
+                    BudgetsLoaded.Add(budget);
                 }
             }
         }
 
-        return loadedGoals;
+        return BudgetsLoaded;
     }
 
     static Tissue CreateBudgetInstance(string TypeBuget)
@@ -254,7 +255,7 @@ class Program
             case nameof(Dates):
                 return new Dates("", 0);
             default:
-                throw new ArgumentException("Invalid goal type");
+                throw new ArgumentException("Invalid ");
         }
     }
 }
