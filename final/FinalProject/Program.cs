@@ -57,7 +57,7 @@ class Program
 
     static void CreateBudget(List<Tissue> Budgets, ref int valueMaster)
     {
-        Console.WriteLine("\nChoose Budget Type:");
+        Console.WriteLine("\nChoose Budget Type:(Round up to the nearest dollar)");
         Console.WriteLine("1. A Simple budget ");
         Console.WriteLine("2. A Tithing Budget ");
         Console.WriteLine("3. A Fun Budget ");

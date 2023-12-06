@@ -1,2 +1,0 @@
-Dates,Brian,1000,False
-Dates,Ritchie,1000,False
