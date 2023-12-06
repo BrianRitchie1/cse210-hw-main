@@ -1,18 +1,19 @@
 public class Fun : Tissue
 {
-    public Fun (string titleBtr, int valuesBtr)
+    public Fun (string titleBtr, int valuesBtr, string fun_description)
     {
         BtrTitle = titleBtr;
         BtrPoints = valuesBtr;
+        BtrLikeToDo = fun_description;
     }
     public override void BtrRecord()
     {
-        BtrAdditionPoints += BtrPoints;
     }
 
     public override void BtrDisplay()
     {
         Console.WriteLine($"{BtrTitle} - {BtrPoints}$");
+        Console.WriteLine($"This money goes to the activity of: {BtrLikeToDo}. Don't spend it otherwise");
     }
 
     public override string BtrToString()

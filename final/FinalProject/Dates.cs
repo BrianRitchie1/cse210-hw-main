@@ -9,7 +9,6 @@ public class Dates : Tissue
 
     public override void BtrRecord()
     {
-        BtrAdditionPoints += BtrPoints;
     }
 
     public override void BtrDisplay()

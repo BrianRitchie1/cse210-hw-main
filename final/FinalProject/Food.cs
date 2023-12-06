@@ -1,18 +1,24 @@
 public class Food : Tissue
 {
-    public Food (string titleBtr, int valuesBtr)
+    public Food (string titleBtr, string fiberBtr, string protienBtr, string sweetBtr, int valuesBtr)
     {
         BtrTitle = titleBtr;
         BtrPoints = valuesBtr;
+        BtrFiber = fiberBtr;
+        BtrProtien = protienBtr;
+        BtrSweet = sweetBtr;
     }
     public override void BtrRecord()
     {
-        BtrAdditionPoints += BtrPoints;
     }
 
     public override void BtrDisplay()
     {
         Console.WriteLine($"{BtrTitle} - {BtrPoints}$");
+        Console.WriteLine($"With this money, you'll be getting {BtrFiber} for your gut health");
+        Console.WriteLine($"{BtrProtien} for healthy muscle growth and support");
+        Console.WriteLine($"And {BtrSweet} for your sanity");
+        Console.WriteLine(" ");
     }
 
     public override string BtrToString()

@@ -8,7 +8,7 @@ class Program
     static void Main()
     {
         List<Tissue> Budgets = new List<Tissue>();
-        Console.Write("What is you master budget? ");
+        Console.Write("What is you master budget? (The most amount of money you can take from for these budgets) ");
         int valueMaster = int.Parse(Console.ReadLine());
 
 
@@ -17,10 +17,10 @@ class Program
         {
             Console.WriteLine("\nMenu:");
             Console.WriteLine("1. Create New Budget");
-            Console.WriteLine("2. List your budgets");
-            Console.WriteLine("3. Save your budgets ");
+            Console.WriteLine("2. Display your budgets");
+            Console.WriteLine("3. Save all budgets ");
             Console.WriteLine("4. Load budgets ");
-            Console.WriteLine("5. Record Stuff");
+            Console.WriteLine("5. Record Time Budget Completion Status ");
             Console.WriteLine("6. Quit");
             Console.Write("\nEnter your choice: ");
             string choice = Console.ReadLine();
@@ -58,14 +58,12 @@ class Program
     static void CreateBudget(List<Tissue> Budgets, ref int valueMaster)
     {
         Console.WriteLine("\nChoose Budget Type:");
-        Console.WriteLine("1. Any simple budget ");
-        Console.WriteLine("2. Tithing Budget ");
-        Console.WriteLine("3. A budget for fun ");
-        Console.WriteLine("4. A budget for rent ");
-        Console.WriteLine("5. Time Budgeting ");
-        Console.WriteLine("6. A budget for food ");
-        Console.WriteLine("7. Check bugdets against master budget ");
-
+        Console.WriteLine("1. A Simple budget ");
+        Console.WriteLine("2. A Tithing Budget ");
+        Console.WriteLine("3. A Fun Budget ");
+        Console.WriteLine("4. A Rent Budget ");
+        Console.WriteLine("5. A Time Budget ");
+        Console.WriteLine("6. A Food Budget ");
 
         Console.Write("Enter your choice: ");
         string TypeBuget = Console.ReadLine();
@@ -73,7 +71,7 @@ class Program
         switch (TypeBuget)
         {
             case "1":
-                Budgets.Add(CreateSimpleBudget());
+                Budgets.Add(CreateSimpleBudget(valueMaster));
                 break;
             case "2":
                 Budgets.Add(CreateThithingBudget());
@@ -82,7 +80,7 @@ class Program
                 Budgets.Add(CreateFunBudget());
                 break;
             case "4": 
-                Budgets.Add(CreateRentBudget());
+                Budgets.Add(CreateRentBudget(valueMaster));
                 break;
             case "5":
                 Budgets.Add(CreateTimeBudget());
@@ -90,30 +88,25 @@ class Program
             case "6":
                 Budgets.Add(CreateFoodBudget());
                 break;
-            case "7":
-                Budgets.Add(CreateMasterBudget(valueMaster));
-                break;
             default:
                 Console.WriteLine("Invalid choice. Creating a Simple Budget instead");
-                Budgets.Add(CreateSimpleBudget());
+                Budgets.Add(CreateSimpleBudget(valueMaster));
                 break;
         }
     }
 
-    static Dates CreateSimpleBudget()
+    static Dates CreateSimpleBudget(int valueMaster)
     {
         Console.Write("Enter the name of the budget: ");
         string titleBtr = Console.ReadLine();
         Console.Write("Enter the initial value of the budget: ");
         int valuesBtr = int.Parse(Console.ReadLine());
 
-
         return new Dates(titleBtr, valuesBtr);
     }
     static Tithing CreateThithingBudget()
     {
-        Console.Write("Is for thithing ");
-        string titleBtr = Console.ReadLine();
+        string titleBtr = "Thithing Budget ";
         Console.Write("What did you make this month? ");
         int moneyMade = int.Parse(Console.ReadLine());
         Console.WriteLine($"You should give {moneyMade/10} to the Lord ");
@@ -125,28 +118,34 @@ class Program
     {
         Console.Write("This budget is for non essential activites that you enjoy doing. What's a good name for this budget? ");
         string titleBtr = Console.ReadLine();
-        Console.Write("What is this budget for? ");
-        string description = Console.ReadLine();
+        Console.Write("What fun activitiy will you be doing? ");
+        string fun_description = Console.ReadLine();
         Console.Write("What is the amount you're going to spend? ");
         int valuesBtr = int.Parse(Console.ReadLine());
 
-        return new Fun (titleBtr, valuesBtr);
+        return new Fun (titleBtr, valuesBtr, fun_description);
     }
 
-    static Rent CreateRentBudget()
+    static Rent CreateRentBudget(int valueMaster)
     {
         Console.Write("This budget is for rent, Duh. What's a good name for this budget? ");
         string titleBtr = Console.ReadLine();
-        Console.Write("How much money do you have? ");
-        int totalMoney = int.Parse(Console.ReadLine());
         Console.Write("How much will rent be? ");
-        int afterRent = int.Parse(Console.ReadLine());
-        Console.WriteLine($"You will have {totalMoney - afterRent}$ after rent ");
-        int valuesBtr = totalMoney - afterRent;
-         
+        int RentCost = int.Parse(Console.ReadLine());
+        Console.WriteLine($"You will have {valueMaster - RentCost}$ after rent ");
+        int valuesBtr = valueMaster - RentCost;
+
+        if (valuesBtr <= RentCost + 100)
+        {
+            Console.Write("You will need to make more money or find a smaller accomadation. Get on that.");
+        }
+        else
+        {
+            Console.Write("Your budget should be suffectint to continure living where you live");
+        }
 
 
-        return new Rent (totalMoney, afterRent, titleBtr, valuesBtr);
+        return new Rent (titleBtr, valuesBtr);
     }
 
     static Timea CreateTimeBudget()
@@ -154,22 +153,31 @@ class Program
         Console.Write("This is a budget for time. What would you like to call this particular budget? ");
         string titleBtr = Console.ReadLine();
         Console.Write("How many hours do you want to spend on this or that? ");
-        int valuesBtr = int.Parse(Console.ReadLine());
+        int valuesTime = int.Parse(Console.ReadLine());
 
-        return new Timea (titleBtr, valuesBtr);
+        return new Timea (titleBtr, valuesTime);
     }
 
     static Food CreateFoodBudget()
     {
         Console.Write("This is a budget for food. What would you like to call this budget? ");
         string titleBtr = Console.ReadLine();
+        Console.WriteLine("A good, REALISTIC, diet consists of a good amount of food with fiber, protien, and a small amount of sweets");
+
+        Console.Write("What food would you like to be your fiber? ");
+        string fiberBtr = Console.ReadLine();
+
+        Console.Write("What food would you like to be your protien? ");
+        string protienBtr = Console.ReadLine();
+
+        Console.Write("What would you like to be you sweet snack? ");
+        string sweetBtr = Console.ReadLine();
+
         Console.Write("How much would you like to spend on food for this week? ");
         int valuesBtr = int.Parse(Console.ReadLine());
 
-        
-        
 
-        return new Food (titleBtr, valuesBtr);
+        return new Food (titleBtr, fiberBtr, protienBtr, sweetBtr, valuesBtr);
 
 
     }

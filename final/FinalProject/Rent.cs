@@ -1,17 +1,15 @@
 public class Rent : Tissue
 {
-    public Rent (int totalMoney, int afterRentstring, string titleBtr, int valuesBtr)
+    public Rent (string titleBtr, int valuesBtr)
     {
         
         BtrTitle = titleBtr;
         BtrPoints = valuesBtr;
-        MoneyTotal = totalMoney;
-        Robbery = afterRentstring;
+       
 
     }
     public override void BtrRecord()
     {
-        BtrAdditionPoints += BtrPoints;
     }
 
     public override void BtrDisplay()

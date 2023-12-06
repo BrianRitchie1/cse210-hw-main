@@ -1,18 +1,18 @@
 public class Timea : Tissue
 {
-    public Timea(string titleBtr, int valuesBtr)
+    public Timea(string titleBtr, int valuesTime)
     {
         BtrTitle = titleBtr;
-        BtrPoints = valuesBtr;
+        BtrHours = valuesTime;
     }
     public override void BtrRecord()
     {
-        BtrAdditionPoints += BtrPoints;
+        BtrBool = true;
     }
 
     public override void BtrDisplay()
     {
-        Console.WriteLine($"{BtrTitle} -  {BtrPoints} hours");
+        Console.WriteLine($"{BtrTitle} - [{(BtrBool ? "Complete" : " ")}]");    
     }
 
     public override string BtrToString()
