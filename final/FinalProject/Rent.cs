@@ -1,3 +1,4 @@
+// child class for rent budget
 public class Rent : Tissue
 {
     public Rent (string titleBtr, int valuesBtr)

@@ -7,14 +7,16 @@ class Program
 {
     static void Main()
     {
+        // Gets the master budget
         List<Tissue> Budgets = new List<Tissue>();
-        Console.Write("What is you master budget? (The most amount of money you can take from for these budgets) ");
-        int valueMaster = int.Parse(Console.ReadLine());
+        Console.Write("What is you master budget? (The most amount of money you are willing to distribute for budgeting) ");
+        int BtrvalueMaster = int.Parse(Console.ReadLine());
 
 
 
         while (true)
         {
+            //Options menu that allows user to exit
             Console.WriteLine("\nMenu:");
             Console.WriteLine("1. Create New Budget");
             Console.WriteLine("2. Display your budgets");
@@ -27,11 +29,12 @@ class Program
 
             switch (choice)
             {
+
                 case "1":
-                    CreateBudget(Budgets, ref valueMaster);
+                    CreateBudget(Budgets, ref BtrvalueMaster);
                     break;
                 case "2":
-                    DisplayBudget(Budgets, valueMaster);
+                    DisplayBudget(Budgets, BtrvalueMaster);
                     break;
                 case "3":
                     SaveBudget("budget.txt", Budgets);
@@ -42,7 +45,7 @@ class Program
                     Console.WriteLine("Budgets loaded.");
                     break;
                 case "5":
-                    RecordEvent(Budgets, valueMaster);
+                    RecordEvent(Budgets, BtrvalueMaster);
                     break;
                 case "6":
                     SaveBudget("budgets.txt", Budgets);
@@ -55,8 +58,9 @@ class Program
         }
     }
 
-    static void CreateBudget(List<Tissue> Budgets, ref int valueMaster)
+    static void CreateBudget(List<Tissue> Budgets, ref int BtrvalueMaster)
     {
+        //Menu for Budgets
         Console.WriteLine("\nChoose Budget Type:(Round up to the nearest dollar)");
         Console.WriteLine("1. A Simple budget ");
         Console.WriteLine("2. A Tithing Budget ");
@@ -71,7 +75,7 @@ class Program
         switch (TypeBuget)
         {
             case "1":
-                Budgets.Add(CreateSimpleBudget(valueMaster));
+                Budgets.Add(CreateSimpleBudget(BtrvalueMaster));
                 break;
             case "2":
                 Budgets.Add(CreateThithingBudget());
@@ -80,7 +84,7 @@ class Program
                 Budgets.Add(CreateFunBudget());
                 break;
             case "4": 
-                Budgets.Add(CreateRentBudget(valueMaster));
+                Budgets.Add(CreateRentBudget(BtrvalueMaster));
                 break;
             case "5":
                 Budgets.Add(CreateTimeBudget());
@@ -90,12 +94,13 @@ class Program
                 break;
             default:
                 Console.WriteLine("Invalid choice. Creating a Simple Budget instead");
-                Budgets.Add(CreateSimpleBudget(valueMaster));
+                Budgets.Add(CreateSimpleBudget(BtrvalueMaster));
                 break;
         }
     }
 
-    static Dates CreateSimpleBudget(int valueMaster)
+// Creates any budget without help from program
+    static Dates CreateSimpleBudget(int BtrvalueMaster)
     {
         Console.Write("Enter the name of the budget: ");
         string titleBtr = Console.ReadLine();
@@ -104,6 +109,7 @@ class Program
 
         return new Dates(titleBtr, valuesBtr);
     }
+    // takes increase / 10
     static Tithing CreateThithingBudget()
     {
         string titleBtr = "Thithing Budget ";
@@ -114,6 +120,7 @@ class Program
 
         return new Tithing (titleBtr, valuesBtr);
     }
+    // Makes user input an activity that will be displayed with the budget
     static Fun CreateFunBudget()
     {
         Console.Write("This budget is for non essential activites that you enjoy doing. What's a good name for this budget? ");
@@ -126,28 +133,28 @@ class Program
         return new Fun (titleBtr, valuesBtr, fun_description);
     }
 
-    static Rent CreateRentBudget(int valueMaster)
+// Creates rent budget that takes into account if you need to move with a simple if statement
+    static Rent CreateRentBudget(int BtrvalueMaster)
     {
         Console.Write("This budget is for rent, Duh. What's a good name for this budget? ");
         string titleBtr = Console.ReadLine();
         Console.Write("How much will rent be? ");
         int RentCost = int.Parse(Console.ReadLine());
-        Console.WriteLine($"You will have {valueMaster - RentCost}$ after rent ");
-        int valuesBtr = valueMaster - RentCost;
+        int valuesBtr = RentCost;
 
-        if (valuesBtr <= RentCost + 100)
+        if (valuesBtr >= BtrvalueMaster + 100)
         {
             Console.Write("You will need to make more money or find a smaller accomadation. Get on that.");
         }
         else
         {
-            Console.Write("Your budget should be suffectint to continure living where you live");
+            Console.WriteLine("Your budget should be suffectint to continure living where you live");
         }
 
 
         return new Rent (titleBtr, valuesBtr);
     }
-
+// Creates a time budget that can be checked off in the first menu
     static Timea CreateTimeBudget()
     {
         Console.Write("This is a budget for time. What would you like to call this particular budget? ");
@@ -158,6 +165,7 @@ class Program
         return new Timea (titleBtr, valuesTime);
     }
 
+// Creates a food budget with different inputs for different nutrition values
     static Food CreateFoodBudget()
     {
         Console.Write("This is a budget for food. What would you like to call this budget? ");
@@ -182,20 +190,14 @@ class Program
 
     }
 
-    static Master CreateMasterBudget(int valueMaster)
-    {
-        
-        string titleBtr = "Master Budget";
-        return new Master (titleBtr, valueMaster);
-        
-    }
+
 
 
     
-
-    static void RecordEvent(List<Tissue> Budgets, int valueMaster)
+// Allows user to check off time event
+    static void RecordEvent(List<Tissue> Budgets, int BtrvalueMaster)
     {
-        DisplayBudget(Budgets, valueMaster);
+        DisplayBudget(Budgets, BtrvalueMaster);
 
         Console.Write("\nEnter the index of the budget to record an event: ");
         int index = int.Parse(Console.ReadLine());
@@ -211,17 +213,19 @@ class Program
         }
     }
 
-    static void DisplayBudget(List<Tissue> Budgets, int valueMaster)
+// Allows user to display all the budgets and their variables. 
+    static void DisplayBudget(List<Tissue> Budgets, int BtrvalueMaster)
     {
         Console.WriteLine("\nBudgets:");
         for (int i = 0; i < Budgets.Count; i++)
         {
             Budgets[i].BtrDisplay();
         }
-        Console.WriteLine($"\nMaster Budget: {valueMaster}");
-        Console.WriteLine($"\nRemaining Master Budget: {valueMaster - Budgets.Sum(g => g.BtrPoints)}\n");
+        Console.WriteLine($"\nMaster Budget: {BtrvalueMaster}");
+        Console.WriteLine($"\nRemaining Master Budget: {BtrvalueMaster - Budgets.Sum(g => g.BtrPoints)}\n");
     }
 
+// Allows to save to a txt csv file
     static void SaveBudget(string fileName, List<Tissue> Budgets)
     {
         using (StreamWriter writer = new StreamWriter(fileName))
@@ -232,7 +236,7 @@ class Program
             }
         }
     }
-
+// Loads from save
     static List<Tissue> LoadBudgets(string fileName)
     {
         List<Tissue> BudgetsLoaded = new List<Tissue>();
@@ -255,7 +259,7 @@ class Program
 
         return BudgetsLoaded;
     }
-
+// Creates instances
     static Tissue CreateBudgetInstance(string TypeBuget)
     {
         switch (TypeBuget)

@@ -1,3 +1,4 @@
+// child class for tithing budget
 public class Tithing : Tissue
 {
     public Tithing (string titleBtr, int valuesBtr)

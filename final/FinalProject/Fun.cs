@@ -1,3 +1,4 @@
+// Child class for fun budget
 public class Fun : Tissue
 {
     public Fun (string titleBtr, int valuesBtr, string fun_description)

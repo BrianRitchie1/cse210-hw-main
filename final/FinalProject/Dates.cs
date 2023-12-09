@@ -1,4 +1,4 @@
-// Child class for simple goals
+// Child class for simple budgets
 public class Dates : Tissue
 {
     public Dates(string titleBtr, int valuesBtr)

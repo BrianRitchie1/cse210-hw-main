@@ -1,3 +1,4 @@
+// Child class for food budget
 public class Food : Tissue
 {
     public Food (string titleBtr, string fiberBtr, string protienBtr, string sweetBtr, int valuesBtr)

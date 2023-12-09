@@ -1,3 +1,4 @@
+// child class for time budget
 public class Timea : Tissue
 {
     public Timea(string titleBtr, int valuesTime)
